@@ -41,6 +41,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatus", "WebStatus\WebStatus.csproj", "{676A72ED-9A23-4AF6-809F-306164F0BC8E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Logging", "Bus\Common.Logging\Common.Logging.csproj", "{8FBD55DE-7338-46E6-8070-15462BF0D3A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{676A72ED-9A23-4AF6-809F-306164F0BC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{676A72ED-9A23-4AF6-809F-306164F0BC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{676A72ED-9A23-4AF6-809F-306164F0BC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBD55DE-7338-46E6-8070-15462BF0D3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBD55DE-7338-46E6-8070-15462BF0D3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBD55DE-7338-46E6-8070-15462BF0D3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBD55DE-7338-46E6-8070-15462BF0D3A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +123,7 @@ Global
 		{A851989E-66FD-417D-8100-7F75658DBDB8} = {9F77524D-3088-4A3B-8AA2-E90A64F29BDA}
 		{A5EDDD86-201E-42F5-98E1-2E0B128320D9} = {B7D745C5-567E-4BA6-A96D-5796467A4CDF}
 		{D6EF4ECE-0246-499A-AFF8-F776B31AC1CC} = {4056DAF1-5D80-4930-A248-B5FA374B11D8}
+		{8FBD55DE-7338-46E6-8070-15462BF0D3A9} = {4056DAF1-5D80-4930-A248-B5FA374B11D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4F48EE9-F451-41F3-9BDC-E1FAB6AF21C4}

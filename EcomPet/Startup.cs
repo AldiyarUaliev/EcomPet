@@ -1,3 +1,4 @@
+using Common.Logging;
 using EcomPet.Services;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Polly;
 using Polly.Extensions.Http;
+using Serilog;
 using System;
 using System.Net.Http;
 
@@ -27,20 +29,25 @@ namespace EcomPet
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddTransient<LoggingDelegatingHandler>();
+
             services.AddHttpClient<ICatalogService, CatalogService>(c =>
-                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]));
-                //.AddPolicyHandler(GetRetryPolicy())
-                //.AddPolicyHandler(GetCircuitBreakerPolicy());
+                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]))
+                .AddHttpMessageHandler<LoggingDelegatingHandler>()
+                .AddPolicyHandler(GetRetryPolicy())
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddHttpClient<IBasketService, BasketService>(c =>
-                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]));
-            //.AddPolicyHandler(GetRetryPolicy())
-            //.AddPolicyHandler(GetCircuitBreakerPolicy());
+                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]))
+                .AddHttpMessageHandler<LoggingDelegatingHandler>()
+                .AddPolicyHandler(GetRetryPolicy())
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddHttpClient<IOrderService, OrderService>(c =>
-                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]));
-                //.AddPolicyHandler(GetRetryPolicy())
-                //.AddPolicyHandler(GetCircuitBreakerPolicy());
+                c.BaseAddress = new Uri(Configuration["ApiSettings:GatewayAddress"]))
+                .AddHttpMessageHandler<LoggingDelegatingHandler>()
+                .AddPolicyHandler(GetRetryPolicy())
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
 
             services.AddRazorPages();
 
@@ -95,7 +102,7 @@ namespace EcomPet
                     sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
                     onRetry: (exception, retryCount, context) =>
                     {
-                        //Log.Error($"Retry {retryCount} of {context.PolicyKey} at {context.OperationKey}, due to: {exception}.");
+                        Log.Error($"Retry {retryCount} of {context.PolicyKey} at {context.OperationKey}, due to: {exception}.");
                     });
         }
 
